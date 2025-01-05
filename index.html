@@ -1,0 +1,983 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personal Website</title>
+    <link rel="stylesheet" href="styles.css">
+    <!-- 引入 Font Awesome 图标 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <script type="text/javascript">
+        (function() {
+            emailjs.init("YOUR_PUBLIC_KEY"); // 替换为你的EmailJS public key
+        })();
+    </script>
+</head>
+<body>
+    <!-- 导航栏 -->
+    <nav class="navbar">
+        <div class="logo">
+            <span>Personal Website</span>
+            <div class="logo-subtitle">
+            </div>
+        </div>
+        <div class="nav-links">
+            <a href="#projects"><i class="fas fa-laptop-code"></i> Project</a>
+            <a href="#education"><i class="fas fa-graduation-cap"></i> Education</a>
+            <a href="#experience"><i class="fas fa-briefcase"></i> Experience</a>
+            <a href="#interest"><i class="fas fa-heart"></i> Interest</a>
+        </div>
+    </nav>
+
+    <!-- Hero区域 -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Hey, I'm Liu Wenfei!</h1>
+            <p>Welcome to my personal website. This website is a little window into my world, where I share my journey, passions, and the projects I'm working on. Feel free to explore and reach out!</p>
+            <div class="hero-contact">
+                <a href="https://github.com/liu-wenfei" class="contact-icon" target="_blank" rel="noopener noreferrer">
+                    <i class="fab fa-github"></i>
+                </a>
+                <a href="mailto:liuwenfei0406@163.com" class="contact-icon">
+                    <i class="fas fa-envelope"></i>
+                </a>
+            </div>
+            <a href="#projects" class="cta-button">View Projects</a>
+        </div>
+        <div class="hero-image">
+            <img src="images/HELLO.jpg" alt="Hello" class="hello-image">
+        </div>
+    </section>
+
+    <!-- 项目展示区 WEB PROJECT1 -->
+    <section class="project-showcase" id="projects">
+        <h2 class="section-title">WEB PROJECT1</h2>
+        <div class="showcase-container">
+            <div class="project-images">
+                <div class="image-grid">
+                    <div class="image-container">
+                        <img src="images/home.png" alt="Home Interface" onclick="showWebProjectImages(0)" />
+                    </div>
+                    <div class="image-container">
+                        <img src="images/chat.png" alt="Chat Interface" onclick="showWebProjectImages(1)" />
+                    </div>
+                    <div class="image-container">
+                        <img src="images/chat2.png" alt="Chat Features" onclick="showWebProjectImages(2)" />
+                    </div>
+                    <div class="image-container">
+                        <img src="images/chat3.png" alt="Extended Features" onclick="showWebProjectImages(3)" />
+                    </div>
+                </div>
+            </div>
+            <div class="project-info">
+                <h3>AI Assistant WeChat Mini Program</h3>
+                <div class="tech-stack-tags">
+                    <span>WeChat Mini Program</span>
+                    <span>JavaScript</span>
+                    <span>AI Integration</span>
+                    <span>Cloud API</span>
+                </div>
+                <p class="project-description">
+                    An intelligent WeChat Mini Program that provides AI-powered assistance. Key Features include:
+                    <ul class="feature-list">
+                        <li>Real-Time AI Chat Interactions</li>
+                        <li>Text-to-Image Generation</li>
+                        <li>Image Understanding</li>
+                        <li>Cloud-Based Processing</li>
+                    </ul>
+                </p>
+                <a href="https://github.com/liu-wenfei/wechatproject-AI" class="github-link" target="_blank" rel="noopener noreferrer">
+                    <i class="fab fa-weixin"></i> View in Mini Program
+                </a>
+                <div class="demo-section">
+                    <button class="demo-button">
+                        <i class="fas fa-play"></i> Try Demo
+                    </button>
+                    <div id="demo-container" class="demo-container hidden">
+                        <div class="demo-frame">
+                            <div class="demo-header">
+                                <span>AI Assistant</span>
+                                <button class="close-button">
+                                    <i class="fas fa-times"></i>
+                                </button>
+                            </div>
+                            <div class="demo-content">
+                                <div class="chat-container">
+                                    <div class="chat-messages" id="chatMessages">
+                                        <div class="message bot">
+                                            <div class="message-content">
+                                                Hello! I'm your AI assistant. How can I help you today?
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="chat-input">
+                                        <input type="text" id="userInput" placeholder="Type your message here...">
+                                        <button class="send-button" id="sendButton">
+                                            <i class="fas fa-paper-plane"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 项目展示区 ARCH PROJECT2 -->
+    <section class="project-section">
+        <h2 class="section-title">ARCH PROJECT2</h2>
+        <div class="project-grid">
+            <div class="project-card with-bg" onclick="showArchProjectImages([
+                'images/zijin-pride (10).jpg',
+                'images/zijin-pride (8).jpg',
+                'images/zijin-pride (7).jpg',
+                'images/zijin-pride (1).jpg',
+                'images/zijin-pride (10).jpg',
+                'images/zijin-pride (12).jpg',
+                'images/zijin-pride (4).jpg',
+                'images/zijin-pride (2).jpg',
+                'images/zijin-pride (3).jpg'
+            ])">
+                <div class="card-content">
+                    <div class="card-icon">
+                        <i class="fas fa-sync-alt"></i>
+                    </div>
+                    <h3>Historic Building Renovation</h3>
+                    <p>Reviving Ancient Melodies: The Community Bridge.</p>
+                    <div class="metrics">
+                        <span>Add corridors for interaction.
+                            Install cultural features.
+                            Create pandemic-proof spaces.</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-card with-bg" onclick="showArchProjectImages([
+                'images/urban design (1).jpg',
+                'images/urban design (3).jpg',
+                'images/urban design (2).jpg',
+                'images/urban design (4).jpg'
+            ])">
+                <div class="card-content">
+                    <div class="card-icon">
+                        <i class="fas fa-building"></i>
+                    </div>
+                    <h3>Intercity High-Tech Zone Urban Design</h3>
+                    <p>Efficient Eco-smart Living Circle.</p>
+                    <div class="metrics">
+                        <span>Design gateway landmarks.
+                            Integrate station and city with zero transfer.
+                            Blend commercial spaces and roaming.</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-card with-bg" onclick="showArchProjectImages([
+                'images/glass1.jpg',
+                'images/glass2.jpg',
+                'images/glass3.jpg',
+                'images/glass4.jpg',
+                'images/glass6.jpg'
+            ])">
+                <div class="card-content">
+                    <div class="card-icon">
+                        <i class="fas fa-vector-square"></i>
+                    </div>
+                    <h3>Space Design /    AB Space</h3>
+                    <p>Design of Separated Coexistence.</p>
+                    <div class="metrics">
+                        <span>
+                            Separated but connected.
+                            Interactive experience.</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-card with-bg" onclick="showDeviceProject('images/device-install.jpg', 'file:///F:/web/vedio-4/device-display.mp4')">
+                <div class="card-content">
+                    <div class="card-icon">
+                        <i class="fas fa-cubes"></i>
+                    </div>
+                    <h3>Architecture / Performance Installation / Media Art</h3>
+                    <p>Cognition = (disordered, distorted, broken) Information + Imagination</p>
+                    <div class="metrics">
+                        <span></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-card with-bg" onclick="showArchVideo('file:///F:/web/vedio-5/zijincheng.mp4')">
+                <div class="card-content">
+                    <div class="card-icon">
+                        <i class="fas fa-video"></i>
+                    </div>
+                    <h3>Video - AI - based Video Models</h3>
+                    <p>Visual storytelling of urban transformation.</p>
+                    <div class="metrics">
+                        <span>3D visualization showcase.
+                            Urban development process.
+                            Architectural animation.</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 教育经历区 Education -->
+    <section class="education-section" id="education">
+        <h2 class="section-title">Education</h2>
+        <div class="timeline-container">
+            <div class="timeline-item">
+                <div class="timeline-date">2017 - 2022</div>
+                <div class="timeline-content">
+                    <h3>Yangzhou University</h3>
+                    <p class="timeline-role">Bachelor of Architecture</p>
+                    <div class="timeline-courses">
+                        <p>Key Courses:</p>
+                        <span>Advanced Mathematics III (96)</span>
+                        <span>Mechanics B-II (90)</span>
+                        <span>Computer Aided Architectural Design (88)</span>
+                        <span>Building Materials (94)</span>
+                        <span>Introduction to Urban and Architectural Heritage Protection (90)</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-date">2017 - 2022</div>
+                <div class="timeline-content">
+                    <h3>Research & Awards</h3>
+                    <div class="timeline-details">
+                        <h4>Awards</h4>
+                        <p>• First-Class Scholarship (2017-2018)</p>
+                        <p>• First-Class & General Scholarship (2018-2019)</p>
+                        <p>• National Motivational Scholarship (2019-2020)</p>
+                        <p>• Third Prize in the 16th Jiangsu Provincial Structural Innovation Competition (2019)</p>
+                        <p>• Excellence Award in the 7th Jinjiang Cup Architectural Environment Design Competition (2020)</p>
+                        <p>• YAKITORI Restaurant - Dezeen Awards, Restaurant and Bar Interior of the Year (2024)</p>
+                        <h4>Patents</h4>
+                        <p>• Utility Model Patent: Wall Structure for Temporary Paper Tube Buildings </p>
+                        <p>• Utility Model Patent: Seismic-Resistant Node for Building Structures</p>
+                        <h4>Published Papers</h4>
+                        <p>• Research on the Relationship between Color Perception and Architectural Spatial Environment Design </p>
+                        <p>• Investigation Report on Street Vitality of Xuning Gate Street in Yangzhou Old City </p>
+                        <p>• Application of Color Psychology in Kindergarten Interior Design - Case Study of Zhengzhou Muzi International Kindergarten </p>
+                        <h4>Research Projects</h4>
+                        <p>• University Academic Innovation Fund Project: Research on Traditional Construction Techniques in Yangzhou (Collaboration with Yangzhou Famous City Construction)</p>
+                        <p>• University Academic Innovation Fund Project: Research on Color Temperature Perception Energy-saving Technology </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 工作经历区 Work Experience -->
+    <section class="experience-section" id="experience">
+        <h2 class="section-title">Work Experience</h2>
+        <div class="timeline-container">
+            <div class="timeline-item">
+                <div class="timeline-date">2020.06 - 2020.08</div>
+                <div class="timeline-content">
+                    <h3>TUO Architecture Design Office, Shanghai</h3>
+                    <p class="timeline-role">Design Assistant</p>
+                    <div class="timeline-details">
+                        <p>• Translucent installation art design</p>
+                        <p>• Conceptual design for Baichuan Bio-office Building</p>
+                        <p>• Interior renovation of historical apartment in Shanghai</p>
+                        <p>• Interior design for YAKITORI Restaurant, Fenyang Road Branch(2022-2023)</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-date">2019.07 - 2019.08</div>
+                <div class="timeline-content">
+                    <h3>Yangzhou Famous City Construction Co., Ltd</h3>
+                    <p class="timeline-role">Social Practice</p>
+                    <div class="timeline-details">
+                        <p>• Field surveys and mapping of historic buildings (Ruan Family Ancestral Hall, Liu Manor, Wenchang Pavilion)</p>
+                        <p>• Stakeholder interviews and documentation analysis</p>
+                        <p>• Research report on traditional construction techniques</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 页脚 -->
+    <footer class="footer">
+        <div class="footer-content">
+            <p>&copy; 2024 Personal Website.</p>
+            <div class="footer-links">
+            </div>
+        </div>
+    </footer>
+
+    <!-- 图片弹框 -->
+    <div id="imageModal" class="image-modal">
+        <span class="close-modal">&times;</span>
+        <div class="modal-container">
+            <button class="nav-btn prev-btn"><i class="fas fa-chevron-left"></i></button>
+            <img id="modalImage" class="modal-content" src="" alt="Modal Image">
+            <button class="nav-btn next-btn"><i class="fas fa-chevron-right"></i></button>
+        </div>
+        <div class="modal-counter">1 / 9</div>
+    </div>
+
+    <!-- 项目图片展示弹框 -->
+    <div id="projectModal" class="project-modal">
+        <span class="close-modal">&times;</span>
+        <div class="project-images-grid">
+            <!-- 图片将通过JavaScript动态添加 -->
+        </div>
+    </div>
+
+    <!-- 视频播放弹框 -->
+    <div id="videoModal" class="video-modal">
+        <span class="close-modal">&times;</span>
+        <div class="video-container">
+            <video id="modalVideo" class="modal-video" controls>
+                <source src="" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        </div>
+    </div>
+
+    <script>
+    let currentImageIndex = 0;
+    let currentImages = [];
+
+    // WEB PROJECT1 的图片展示
+    const webProjectImages = [
+        'images/home.png',
+        'images/chat.png',
+        'images/chat2.png',
+        'images/chat3.png'
+    ];
+    
+    // ARCH PROJECT2 的图片展示
+    function showArchProjectImages(images) {
+        currentImages = images;
+        currentImageIndex = 0;
+        showModal(images[0]);
+        isArchProject = true;
+    }
+    
+    function showWebProjectImages(index) {
+        currentImages = webProjectImages;
+        currentImageIndex = index;
+        showModal(webProjectImages[index]);
+        isArchProject = false;
+    }
+
+    let isArchProject = false;
+
+    function showModal(imgSrc) {
+        const modal = document.getElementById('imageModal');
+        const modalImg = document.getElementById('modalImage');
+        const counter = modal.querySelector('.modal-counter');
+        
+        modalImg.onload = function() {
+            modal.style.display = "block";
+        }
+        modalImg.src = imgSrc;
+        counter.textContent = `${currentImageIndex + 1} / ${isArchProject ? currentImages.length + 1 : currentImages.length}`;
+
+        // 导航按钮事件
+        const prevBtn = modal.querySelector('.prev-btn');
+        const nextBtn = modal.querySelector('.next-btn');
+        
+        prevBtn.onclick = (e) => {
+            e.stopPropagation();
+            if (currentImageIndex > 0) {
+                currentImageIndex--;
+                updateModalContent();
+            }
+        };
+        
+        nextBtn.onclick = (e) => {
+            e.stopPropagation();
+            if (currentImageIndex < (isArchProject ? currentImages.length : currentImages.length - 1)) {
+                currentImageIndex++;
+                updateModalContent();
+            }
+        };
+
+        function updateModalContent() {
+            if (isArchProject && currentImageIndex === currentImages.length) {
+                // 显示预览网格
+                modalImg.style.display = 'none';
+                if (!modal.querySelector('.preview-grid')) {
+                    const previewGrid = document.createElement('div');
+                    previewGrid.className = 'preview-grid';
+                    currentImages.forEach((src, index) => {
+                        const img = document.createElement('img');
+                        img.src = src;
+                        img.onclick = () => {
+                            currentImageIndex = index;
+                            updateModalContent();
+                        };
+                        previewGrid.appendChild(img);
+                    });
+                    modal.querySelector('.modal-container').appendChild(previewGrid);
+                } else {
+                    modal.querySelector('.preview-grid').style.display = 'grid';
+                }
+            } else {
+                // 显示单张图片
+                modalImg.style.display = 'block';
+                modalImg.src = currentImages[currentImageIndex];
+                const previewGrid = modal.querySelector('.preview-grid');
+                if (previewGrid) {
+                    previewGrid.style.display = 'none';
+                }
+            }
+            counter.textContent = `${currentImageIndex + 1} / ${isArchProject ? currentImages.length + 1 : currentImages.length}`;
+        }
+
+        // 点击关闭按钮关闭弹框
+        const closeBtn = modal.querySelector('.close-modal');
+        const closeModal = function() {
+            modal.style.display = "none";
+            document.removeEventListener('keydown', escKeyHandler);
+            // 重置预览网格
+            const previewGrid = modal.querySelector('.preview-grid');
+            if (previewGrid) {
+                previewGrid.remove();
+            }
+        }
+        closeBtn.onclick = closeModal;
+
+        // 点击弹框外部关闭弹框
+        modal.onclick = function(e) {
+            if (e.target === modal) {
+                closeModal();
+            }
+        }
+
+        // ESC键关闭弹框
+        const escKeyHandler = function(e) {
+            if (e.key === 'Escape') {
+                closeModal();
+            }
+        };
+        document.addEventListener('keydown', escKeyHandler);
+    }
+
+    // 等待 DOM 加载完成
+    document.addEventListener('DOMContentLoaded', function() {
+        // 获取所有需要的元素
+        const demoButton = document.querySelector('.demo-button');
+        const userInput = document.getElementById('userInput');
+        const demoContainer = document.getElementById('demo-container');
+        const closeButton = document.querySelector('.close-button');
+        const sendButton = document.getElementById('sendButton');
+        
+        // 验证所有必需的元素
+        const requiredElements = {
+            demoButton,
+            userInput,
+            demoContainer,
+            closeButton,
+            sendButton
+        };
+
+        // 检查是否所有元素都存在
+        const missingElements = Object.entries(requiredElements)
+            .filter(([key, element]) => !element)
+            .map(([key]) => key);
+
+        if (missingElements.length > 0) {
+            console.error('Missing elements:', missingElements);
+            return;
+        }
+
+        // Demo 按钮点击事件
+        demoButton.addEventListener('click', function(e) {
+            e.preventDefault();
+            console.log('Demo button clicked');
+            toggleDemo();
+        });
+
+        // 关闭按钮点击事件
+        closeButton.addEventListener('click', function(e) {
+            e.preventDefault();
+            console.log('Close button clicked');
+            toggleDemo();
+        });
+
+        // 发送按钮点击事件
+        sendButton.addEventListener('click', function(e) {
+            e.preventDefault();
+            console.log('Send button clicked');
+            sendMessage();
+        });
+
+        // 输入框回车事件
+        userInput.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                e.preventDefault();
+                sendMessage();
+            }
+        });
+
+        // 点击遮罩层关闭对话框
+        demoContainer.addEventListener('click', function(e) {
+            if (e.target === demoContainer) {
+                toggleDemo();
+            }
+        });
+
+        // 防止对话框内的点击事件冒泡
+        const demoFrame = document.querySelector('.demo-frame');
+        demoFrame.addEventListener('click', function(e) {
+            e.stopPropagation();
+        });
+
+        console.log('All event listeners attached successfully');
+    });
+
+    function toggleDemo() {
+        try {
+            console.log('Toggle demo called');
+            const demoContainer = document.getElementById('demo-container');
+            if (!demoContainer) {
+                console.error('Demo container not found');
+                return;
+            }
+
+            const isHidden = demoContainer.classList.contains('hidden');
+            console.log('Current state:', isHidden ? 'hidden' : 'visible');
+
+            demoContainer.classList.toggle('hidden');
+
+            if (!demoContainer.classList.contains('hidden')) {
+                setTimeout(() => {
+                    const input = document.getElementById('userInput');
+                    if (input) {
+                        input.focus();
+                        console.log('Input focused');
+                    }
+                }, 100);
+            }
+        } catch (error) {
+            console.error('Error in toggleDemo:', error);
+        }
+    }
+
+    // API配置
+    const API_CONFIG = {
+        API_KEY: '278a83b4d8a34798b44af486f5278f80.JtlRJltxLCbhAEiC',
+        API_URL: 'https://open.bigmodel.cn/api/paas/v4/chat/completions',
+        MODEL: 'glm-4v'  // 使用 glm-4v 模型
+    };
+
+    function sendMessage() {
+        try {
+            console.log('Send message called');
+            const input = document.getElementById('userInput');
+            if (!input) {
+                console.error('Input element not found');
+                return;
+            }
+
+            const message = input.value.trim();
+            if (!message) {
+                console.log('Empty message, ignoring');
+                return;
+            }
+
+            // 禁用输入和按钮
+            input.disabled = true;
+            const sendButton = document.getElementById('sendButton');
+            if (sendButton) sendButton.disabled = true;
+
+            addMessage(message, 'user');
+            input.value = '';
+            showTypingIndicator();
+
+            // 调用API
+            callChatAPI(message).then(response => {
+                removeTypingIndicator();
+                addMessage(response, 'bot');
+                
+                // 重新启用输入和按钮
+                input.disabled = false;
+                if (sendButton) {
+                    sendButton.disabled = false;
+                    input.focus();
+                }
+            }).catch(error => {
+                console.error('API Error:', error);
+                removeTypingIndicator();
+                addMessage("Sorry, I encountered an error. Please try again.", 'bot');
+                
+                input.disabled = false;
+                if (sendButton) {
+                    sendButton.disabled = false;
+                    input.focus();
+                }
+            });
+
+        } catch (error) {
+            console.error('Error in sendMessage:', error);
+            // 恢复输入状态
+            const input = document.getElementById('userInput');
+            const sendButton = document.getElementById('sendButton');
+            if (input) input.disabled = false;
+            if (sendButton) sendButton.disabled = false;
+        }
+    }
+
+    // API调用函数
+    async function callChatAPI(message) {
+        // 构建请求体
+        const requestBody = {
+            model: API_CONFIG.MODEL,
+            messages: [
+                {
+                    role: "user",
+                    content: [
+                        {
+                            type: "text",
+                            text: message
+                        }
+                    ]
+                }
+            ],
+            stream: false,  // 不使用流式输出
+            temperature: 0.7,  // 控制输出的随机性
+            top_p: 0.7  // 控制输出的多样性
+        };
+
+        try {
+            const response = await fetch(API_CONFIG.API_URL, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${API_CONFIG.API_KEY}`,
+                    'Accept': 'application/json'
+                },
+                body: JSON.stringify(requestBody)
+            });
+
+            if (!response.ok) {
+                const errorData = await response.json().catch(() => null);
+                throw new Error(
+                    `API request failed: ${response.status} - ${
+                        errorData?.error?.message || 'Unknown error'
+                    }`
+                );
+            }
+
+            const data = await response.json();
+            console.log('API Response:', data);
+
+            // 验证响应格式
+            if (!data.choices?.[0]?.message?.content) {
+                throw new Error('Invalid response format from API');
+            }
+
+            return data.choices[0].message.content;
+        } catch (error) {
+            console.error('API call error:', error);
+            throw error;
+        }
+    }
+
+    function showTypingIndicator() {
+        const messagesContainer = document.getElementById('chatMessages');
+        const typingDiv = document.createElement('div');
+        typingDiv.className = 'message bot typing';
+        typingDiv.innerHTML = `
+            <div class="message-content">
+                <div class="typing-indicator">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        `;
+        messagesContainer.appendChild(typingDiv);
+        messagesContainer.scrollTop = messagesContainer.scrollHeight;
+    }
+
+    function removeTypingIndicator() {
+        const typingIndicator = document.querySelector('.typing');
+        if (typingIndicator) {
+            typingIndicator.remove();
+        }
+    }
+
+    function addMessage(text, type) {
+        try {
+            const messagesContainer = document.getElementById('chatMessages');
+            if (!messagesContainer) {
+                console.error('Messages container not found');
+                return;
+            }
+
+            // 清理文本，移除多余的空行和空格
+            const cleanText = text
+                .trim()
+                .replace(/\n\s*\n/g, '\n')
+                .replace(/^\s+|\s+$/gm, '');
+
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `message ${type}`;
+            messageDiv.innerHTML = `
+                <div class="message-content">
+                    <span></span>
+                </div>
+            `;
+            messagesContainer.appendChild(messageDiv);
+            
+            // 只对机器人的回复添加打字机效果
+            if (type === 'bot') {
+                const span = messageDiv.querySelector('span');
+                typeWriter(span, cleanText).then(() => {
+                    // 打字完成后移除光标
+                    span.classList.add('typing-done');
+                });
+            } else {
+                messageDiv.querySelector('span').textContent = cleanText;
+            }
+
+            requestAnimationFrame(() => {
+                messagesContainer.scrollTop = messagesContainer.scrollHeight;
+            });
+        } catch (error) {
+            console.error('Error in addMessage:', error);
+        }
+    }
+
+    // 打字机效果函数
+    function typeWriter(element, text, index = 0) {
+        return new Promise((resolve) => {
+            if (index >= text.length) {
+                resolve();
+                return;
+            }
+
+            // 获取当前字符和下一个字符
+            const currentChar = text.charAt(index);
+            const nextChar = text.charAt(index + 1);
+            
+            element.textContent += currentChar;
+            
+            // 根据不同情况设置延迟
+            let delay = 30; // 默认延迟
+            
+            // 标点符号后面停顿长一点
+            if (/[，。！？、,.!?]/.test(currentChar)) {
+                delay = 150;
+            }
+            // 如果当前是空格或换行，加快速度
+            else if (/[\s\n]/.test(currentChar)) {
+                delay = 10;
+            }
+            // 如果下一个字符是标点，稍微停顿
+            else if (/[，。！？、,.!?]/.test(nextChar)) {
+                delay = 80;
+            }
+
+            requestAnimationFrame(() => {
+                const chatMessages = document.querySelector('.chat-messages');
+                if (chatMessages) {
+                    chatMessages.scrollTop = chatMessages.scrollHeight;
+                }
+            });
+
+            setTimeout(() => {
+                typeWriter(element, text, index + 1).then(resolve);
+            }, delay);
+        });
+    }
+
+    // 添加全局错误处理
+    window.addEventListener('error', function(e) {
+        console.error('Global error:', e.error);
+    });
+
+    function showArchVideo(videoSrc, imgSrc) {
+        const modal = document.getElementById('videoModal');
+        const modalVideo = document.getElementById('modalVideo');
+        
+        modalVideo.src = videoSrc;
+        modal.style.display = "block";
+        
+        // 添加返回按钮
+        const backBtn = document.createElement('button');
+        backBtn.className = 'back-btn';
+        backBtn.innerHTML = '<i class="fas fa-arrow-left"></i>';
+        modal.querySelector('.video-container').appendChild(backBtn);
+        
+        // 返回按钮点击事件
+        backBtn.onclick = (e) => {
+            e.stopPropagation();
+            modal.style.display = "none";
+            modalVideo.pause();
+            modalVideo.currentTime = 0;
+            // 返回图片预览
+            if (imgSrc) {
+                const imageModal = document.getElementById('imageModal');
+                const modalImg = document.getElementById('modalImage');
+                modalImg.src = imgSrc;
+                imageModal.style.display = "block";
+            }
+            backBtn.remove();
+        };
+        
+        // 点击关闭按钮关闭弹框
+        const closeBtn = modal.querySelector('.close-modal');
+        const closeModal = function() {
+            modal.style.display = "none";
+            modalVideo.pause();
+            modalVideo.currentTime = 0;
+            backBtn.remove();
+        }
+        closeBtn.onclick = closeModal;
+        
+        // 点击弹框外部关闭弹框
+        modal.onclick = function(e) {
+            if (e.target === modal) {
+                closeModal();
+            }
+        }
+        
+        // ESC键关闭弹框
+        const escKeyHandler = function(e) {
+            if (e.key === 'Escape') {
+                closeModal();
+            }
+        };
+        document.addEventListener('keydown', escKeyHandler);
+    }
+
+    function showDeviceProject(imgSrc, videoSrc) {
+        // 首先显示图片
+        const modal = document.getElementById('imageModal');
+        const modalImg = document.getElementById('modalImage');
+        const counter = modal.querySelector('.modal-counter');
+        const nextBtn = modal.querySelector('.next-btn');
+        const prevBtn = modal.querySelector('.prev-btn');
+        
+        modalImg.onload = function() {
+            modal.style.display = "block";
+        }
+        modalImg.src = imgSrc;
+        counter.textContent = "1 / 2";
+        
+        // 启用上一页和下一页按钮
+        prevBtn.style.display = 'flex';
+        nextBtn.style.display = 'flex';
+        
+        // 下一页显示视频
+        nextBtn.onclick = (e) => {
+            e.stopPropagation();
+            modal.style.display = "none";
+            showArchVideo(videoSrc, imgSrc);  // 传入imgSrc参数
+        };
+        
+        // 添加上一页按钮事件
+        prevBtn.onclick = (e) => {
+            e.stopPropagation();
+            if (modal.style.display === "none") {
+                // 如果当前在视频页，返回图片页
+                const videoModal = document.getElementById('videoModal');
+                videoModal.style.display = "none";
+                const modalVideo = document.getElementById('modalVideo');
+                modalVideo.pause();
+                modal.style.display = "block";
+            }
+        };
+        
+        // 关闭按钮事件
+        const closeBtn = modal.querySelector('.close-modal');
+        const closeModal = function() {
+            modal.style.display = "none";
+            document.removeEventListener('keydown', escKeyHandler);
+        }
+        closeBtn.onclick = closeModal;
+        
+        // 点击弹框外部关闭
+        modal.onclick = function(e) {
+            if (e.target === modal) {
+                closeModal();
+            }
+        }
+        
+        // ESC键关闭
+        const escKeyHandler = function(e) {
+            if (e.key === 'Escape') {
+                closeModal();
+            }
+        };
+        document.addEventListener('keydown', escKeyHandler);
+    }
+
+    function sendEmail(e) {
+        e.preventDefault();
+        
+        const form = document.getElementById('contactForm');
+        const name = form.elements['name'].value;
+        const email = form.elements['email'].value;
+        const message = form.elements['message'].value;
+        
+        // 更改提交按钮状态
+        const submitBtn = form.querySelector('.submit-btn');
+        const originalText = submitBtn.innerHTML;
+        submitBtn.disabled = true;
+        submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
+        
+        // 使用EmailJS发送邮件
+        emailjs.send(
+            'YOUR_SERVICE_ID', // 替换为你的EmailJS service ID
+            'YOUR_TEMPLATE_ID', // 替换为你的EmailJS template ID
+            {
+                from_name: name,
+                reply_to: email,
+                to_email: 'liuwenfei0406@163.com',
+                message: message,
+            }
+        ).then(
+            function(response) {
+                console.log('SUCCESS!', response.status, response.text);
+                // 显示成功消息
+                showNotification('Message sent successfully!', 'success');
+                // 重置表单
+                form.reset();
+            },
+            function(error) {
+                console.log('FAILED...', error);
+                // 显示错误消息
+                showNotification('Failed to send message. Please try again.', 'error');
+            }
+        ).finally(() => {
+            // 恢复提交按钮状态
+            submitBtn.disabled = false;
+            submitBtn.innerHTML = originalText;
+        });
+        
+        return false;
+    }
+
+    // 添加通知提示功能
+    function showNotification(message, type) {
+        const notification = document.createElement('div');
+        notification.className = `notification ${type}`;
+        notification.textContent = message;
+        document.body.appendChild(notification);
+        
+        // 自动消失
+        setTimeout(() => {
+            notification.classList.add('fade-out');
+            setTimeout(() => notification.remove(), 300);
+        }, 3000);
+    }
+    </script>
+</body>
+</html> 
