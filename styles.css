@@ -215,23 +215,23 @@ body {
 }
 
 .project-card:nth-child(1).with-bg::before {
-    background-image: url('images/zijin-pride (6).jpg');
+    background-image: url('./images/zijin-pride (6).jpg');
 }
 
 .project-card:nth-child(2).with-bg::before {
-    background-image: url('images/urban design (2).jpg');
+    background-image: url('./images/urban design (2).jpg');
 }
 
 .project-card:nth-child(3).with-bg::before {
-    background-image: url('images/glass3.jpg');
+    background-image: url('./images/glass3.jpg');
 }
 
 .project-card:nth-child(4).with-bg::before {
-    background-image: url('images/device.png');
+    background-image: url('./images/device.png');
 }
 
 .project-card:nth-child(5).with-bg::before {
-    background-image: url('images/zijincheng-video.jpg');
+    background-image: url('./images/zijincheng-video.jpg');
 }
 
 .project-card .card-content {
