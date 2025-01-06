@@ -88,6 +88,9 @@
                     </ul>
                 </p>
                 <a href="https://github.com/liu-wenfei/wechatproject-AI" class="github-link" target="_blank" rel="noopener noreferrer">
+                    <i class="fab fa-github"></i> View on GitHub
+                </a>
+                <a href="https://github.com/liu-wenfei/wechatproject-AI" class="github-link" target="_blank" rel="noopener noreferrer">
                     <i class="fab fa-weixin"></i> View in Mini Program
                 </a>
                 <div class="demo-section">
@@ -310,7 +313,7 @@
     <!-- 页脚 -->
     <footer class="footer">
         <div class="footer-content">
-            <p>&copy; 2024 Personal Website.</p>
+            <p>&copy; 2024 liu-wenfei.</p>
             <div class="footer-links">
             </div>
         </div>
@@ -376,19 +379,39 @@
     let isArchProject = false;
 
     function showModal(imgSrc) {
+        if (!imgSrc) {
+            console.error('Image source is missing');
+            return;
+        }
+
         const modal = document.getElementById('imageModal');
         const modalImg = document.getElementById('modalImage');
         const counter = modal.querySelector('.modal-counter');
         
+        modal.classList.add('loading');
+        modalImg.style.opacity = '0';
+        
         modalImg.onload = function() {
+            modal.classList.remove('loading');
+            modalImg.style.opacity = '1';
             modal.style.display = "block";
         }
+        
+        modalImg.onerror = function() {
+            console.error('Failed to load image:', imgSrc);
+            modal.classList.remove('loading');
+            showNotification('Failed to load image', 'error');
+        }
+
         modalImg.src = imgSrc;
         counter.textContent = `${currentImageIndex + 1} / ${isArchProject ? currentImages.length + 1 : currentImages.length}`;
 
         // 导航按钮事件
         const prevBtn = modal.querySelector('.prev-btn');
         const nextBtn = modal.querySelector('.next-btn');
+        
+        prevBtn.style.display = currentImageIndex > 0 ? 'flex' : 'none';
+        nextBtn.style.display = currentImageIndex < (isArchProject ? currentImages.length : currentImages.length - 1) ? 'flex' : 'none';
         
         prevBtn.onclick = (e) => {
             e.stopPropagation();
@@ -407,35 +430,44 @@
         };
 
         function updateModalContent() {
-            if (isArchProject && currentImageIndex === currentImages.length) {
-                // 显示预览网格
-                modalImg.style.display = 'none';
-                if (!modal.querySelector('.preview-grid')) {
-                    const previewGrid = document.createElement('div');
-                    previewGrid.className = 'preview-grid';
-                    currentImages.forEach((src, index) => {
-                        const img = document.createElement('img');
-                        img.src = src;
-                        img.onclick = () => {
-                            currentImageIndex = index;
-                            updateModalContent();
-                        };
-                        previewGrid.appendChild(img);
-                    });
-                    modal.querySelector('.modal-container').appendChild(previewGrid);
+            try {
+                if (isArchProject && currentImageIndex === currentImages.length) {
+                    // 显示预览网格
+                    modalImg.style.display = 'none';
+                    if (!modal.querySelector('.preview-grid')) {
+                        const previewGrid = document.createElement('div');
+                        previewGrid.className = 'preview-grid';
+                        currentImages.forEach((src, index) => {
+                            const img = document.createElement('img');
+                            img.src = src;
+                            img.onclick = () => {
+                                currentImageIndex = index;
+                                updateModalContent();
+                            };
+                            previewGrid.appendChild(img);
+                        });
+                        modal.querySelector('.modal-container').appendChild(previewGrid);
+                    } else {
+                        modal.querySelector('.preview-grid').style.display = 'grid';
+                    }
                 } else {
-                    modal.querySelector('.preview-grid').style.display = 'grid';
+                    // 显示单张图片
+                    modalImg.style.display = 'block';
+                    modalImg.src = currentImages[currentImageIndex];
+                    const previewGrid = modal.querySelector('.preview-grid');
+                    if (previewGrid) {
+                        previewGrid.style.display = 'none';
+                    }
                 }
-            } else {
-                // 显示单张图片
-                modalImg.style.display = 'block';
-                modalImg.src = currentImages[currentImageIndex];
-                const previewGrid = modal.querySelector('.preview-grid');
-                if (previewGrid) {
-                    previewGrid.style.display = 'none';
-                }
+                counter.textContent = `${currentImageIndex + 1} / ${isArchProject ? currentImages.length + 1 : currentImages.length}`;
+               
+                // 更新按钮可见性
+                prevBtn.style.display = currentImageIndex > 0 ? 'flex' : 'none';
+                nextBtn.style.display = currentImageIndex < (isArchProject ? currentImages.length : currentImages.length - 1) ? 'flex' : 'none';
+            } catch (error) {
+                console.error('Error updating modal content:', error);
+                showNotification('Failed to update image preview', 'error');
             }
-            counter.textContent = `${currentImageIndex + 1} / ${isArchProject ? currentImages.length + 1 : currentImages.length}`;
         }
 
         // 点击关闭按钮关闭弹框
@@ -806,7 +838,14 @@
         const modal = document.getElementById('videoModal');
         const modalVideo = document.getElementById('modalVideo');
         
+        // 添加错误处理
+        modalVideo.onerror = function() {
+            console.error('Error loading video:', videoSrc);
+            alert('Video could not be loaded. Please check the file path.');
+        };
+
         modalVideo.src = videoSrc;
+        modalVideo.load(); // 强制重新加载视频
         modal.style.display = "block";
         
         // 添加返回按钮
@@ -978,6 +1017,115 @@
             setTimeout(() => notification.remove(), 300);
         }, 3000);
     }
+
+    // 优化图片预览点击事件
+    document.querySelectorAll('.preview-image').forEach(image => {
+        image.addEventListener('click', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            
+            const previewContainer = document.createElement('div');
+            previewContainer.className = 'preview-overlay';
+            
+            const previewImage = document.createElement('img');
+            previewImage.src = this.getAttribute('data-full-src') || this.src;
+            previewImage.className = 'preview-content';
+            
+            // 阻止图片点击事件冒泡
+            previewImage.addEventListener('click', function(e) {
+                e.stopPropagation();
+            });
+            
+            previewContainer.appendChild(previewImage);
+            document.body.appendChild(previewContainer);
+            
+            // 点击遮罩层关闭预览
+            previewContainer.addEventListener('click', function(e) {
+                if (e.target === this) { // 确保只有点击遮罩层才关闭
+                    document.body.removeChild(this);
+                }
+            });
+
+            // 添加ESC键关闭功能
+            const escHandler = (e) => {
+                if (e.key === 'Escape') {
+                    document.body.removeChild(previewContainer);
+                    document.removeEventListener('keydown', escHandler);
+                }
+            };
+            document.addEventListener('keydown', escHandler);
+        });
+    });
+
+    // 优化视频预览点击事件
+    document.querySelectorAll('.preview-video').forEach(video => {
+        video.addEventListener('click', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            
+            const previewContainer = document.createElement('div');
+            previewContainer.className = 'preview-overlay';
+            
+            const previewVideo = document.createElement('video');
+            previewVideo.src = this.getAttribute('data-video-src');
+            previewVideo.className = 'preview-content';
+            previewVideo.controls = true;
+            previewVideo.autoplay = true;
+            
+            // 阻止视频控件点击事件冒泡
+            previewVideo.addEventListener('click', function(e) {
+                e.stopPropagation();
+            });
+            
+            previewContainer.appendChild(previewVideo);
+            document.body.appendChild(previewContainer);
+            
+            // 点击遮罩层关闭预览
+            previewContainer.addEventListener('click', function(e) {
+                if (e.target === this) { // 确保只有点击遮罩层才关闭
+                    previewVideo.pause(); // 暂停视频播放
+                    document.body.removeChild(this);
+                }
+            });
+
+            // 添加ESC键关闭功能
+            const escHandler = (e) => {
+                if (e.key === 'Escape') {
+                    previewVideo.pause(); // 暂停视频播放
+                    document.body.removeChild(previewContainer);
+                    document.removeEventListener('keydown', escHandler);
+                }
+            };
+            document.addEventListener('keydown', escHandler);
+        });
+    });
     </script>
+
+    <style>
+    .preview-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.9);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 1000;
+        cursor: pointer;
+    }
+
+    .preview-content {
+        max-width: 90%;
+        max-height: 90vh;
+        object-fit: contain;
+        cursor: default; /* 确保鼠标悬停在内容上时显示默认指针 */
+    }
+
+    video.preview-content {
+        cursor: default;
+    }
+    </style>
 </body>
 </html> 

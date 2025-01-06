@@ -1146,10 +1146,29 @@ html {
     height: 100%;
     background-color: rgba(255, 255, 255, 0.15);
     backdrop-filter: blur(3px);
+    transition: opacity 0.3s ease;
 }
 
 .image-modal.show {
     opacity: 1;
+}
+
+.image-modal.loading::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 40px;
+    height: 40px;
+    border: 3px solid rgba(37, 99, 235, 0.1);
+    border-top-color: var(--primary-color);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    to { transform: translate(-50%, -50%) rotate(360deg); }
 }
 
 .modal-content {
@@ -1162,7 +1181,7 @@ html {
     left: 50%;
     transform: translate(-50%, -50%);
     border-radius: 0.8rem;
-    animation: zoomIn 0.3s ease;
+    transition: opacity 0.3s ease;
     object-fit: contain;
     background: transparent;
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
