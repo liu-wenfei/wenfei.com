@@ -32,21 +32,33 @@
 
     <!-- Hero区域 -->
     <section class="hero">
+        <div class="floating-shapes">
+            <div class="shape shape-1"></div>
+            <div class="shape shape-2"></div>
+            <div class="shape shape-3"></div>
+        </div>
         <div class="hero-content">
-            <h1>Hey, I'm Liu Wenfei!</h1>
-            <p>Welcome to my personal website. This website is a little window into my world, where I share my journey, passions, and the projects I'm working on. Feel free to explore and reach out!</p>
-            <div class="hero-contact">
-                <a href="https://github.com/liu-wenfei" class="contact-icon" target="_blank" rel="noopener noreferrer">
-                    <i class="fab fa-github"></i>
-                </a>
-                <a href="mailto:liuwenfei0406@163.com" class="contact-icon">
-                    <i class="fas fa-envelope"></i>
+            <div class="hero-text-wrapper">
+                <h1>Hey, I'm Liu Wenfei!</h1>
+                <p>Welcome to my personal website. This website is a little window into my world, where I share my journey, passions, and the projects I'm working on. Feel free to explore and reach out!</p>
+                <div class="hero-contact">
+                    <a href="https://github.com/liu-wenfei" class="contact-icon" target="_blank" rel="noopener noreferrer">
+                        <i class="fab fa-github"></i>
+                    </a>
+                    <a href="mailto:liuwenfei0406@163.com" class="contact-icon">
+                        <i class="fas fa-envelope"></i>
+                    </a>
+                </div>
+                <a href="#projects" class="cta-button">
+                    <span>View Projects</span>
+                    <i class="fas fa-arrow-right"></i>
                 </a>
             </div>
-            <a href="#projects" class="cta-button">View Projects</a>
         </div>
         <div class="hero-image">
-            <img src="images/HELLO.jpg" alt="Hello" class="hello-image">
+            <div class="image-wrapper">
+                <img src="images/HELLO.jpg" alt="Hello" class="hello-image">
+            </div>
         </div>
     </section>
 
@@ -346,6 +358,9 @@
             </video>
         </div>
     </div>
+
+    <!-- 在body标签结束前添加 -->
+    <script src="gallery.js"></script>
 
     <script>
     let currentImageIndex = 0;

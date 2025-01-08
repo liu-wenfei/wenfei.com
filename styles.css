@@ -73,8 +73,123 @@ body {
     min-height: 90vh;
     position: relative;
     overflow: hidden;
+    background: linear-gradient(135deg, #f5f7fa 0%, #ffffff 100%);
 }
 
+/* 浮动形状动画 */
+.floating-shapes {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+}
+
+.shape {
+    position: absolute;
+    border-radius: 50%;
+    opacity: 0.4;
+    animation: float 12s infinite cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.shape-1 {
+    width: 50px;
+    height: 50px;
+    background: #3498db;
+    top: 20%;
+    right: 15%;
+    animation-delay: 0s;
+}
+
+.shape-2 {
+    width: 30px;
+    height: 30px;
+    background: #e74c3c;
+    bottom: 25%;
+    right: 28%;
+    animation-delay: -4s;
+}
+
+.shape-3 {
+    width: 40px;
+    height: 40px;
+    background: #2ecc71;
+    top: 60%;
+    right: 8%;
+    animation-delay: -8s;
+}
+
+/* 优化浮动动画 */
+@keyframes float {
+    0%, 100% {
+        transform: translate(0, 0) rotate(0deg) scale(1);
+    }
+    20% {
+        transform: translate(15px, -15px) rotate(8deg) scale(1.05);
+    }
+    40% {
+        transform: translate(5px, -25px) rotate(0deg) scale(1.1);
+    }
+    60% {
+        transform: translate(-15px, -15px) rotate(-8deg) scale(1.05);
+    }
+    80% {
+        transform: translate(-5px, -5px) rotate(-4deg) scale(0.95);
+    }
+}
+
+/* 响应式设计 */
+@media (max-width: 1024px) {
+    .hero {
+        flex-direction: column;
+        padding: 4rem 2rem;
+        text-align: center;
+    }
+
+    .hero-content {
+        margin-bottom: 3rem;
+    }
+
+    .hero-contact {
+        justify-content: center;
+    }
+
+    .hero h1 {
+        font-size: 2.5rem;
+    }
+
+    .image-wrapper {
+        max-width: 400px;
+    }
+}
+
+@media (max-width: 768px) {
+    .hero {
+        padding: 3rem 1.5rem;
+    }
+
+    .hero h1 {
+        font-size: 2rem;
+    }
+
+    .hero p {
+        font-size: 1rem;
+    }
+
+    .image-wrapper {
+        max-width: 300px;
+    }
+}
+
+/* 移除之前的背景装饰元素 */
+.hero::before,
+.hero::after,
+.hero .floating-shape {
+    display: none;
+}
+
+/* 保持其他动画效果 */
 .hero-content {
     flex: 1;
     max-width: 580px;
@@ -82,6 +197,21 @@ body {
     z-index: 2;
     margin-right: 5rem;
     transform: translateX(3rem);
+    animation: slideInFromLeft 1s ease-out forwards;
+    opacity: 0;
+}
+
+.hero-image {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
+    flex: 1;
+    max-width: 50%;
+    margin-left: auto;
+    transform: translateX(-1rem);
+    animation: slideInFromRight 1s ease-out forwards;
+    opacity: 0;
 }
 
 .hero h1 {
@@ -111,6 +241,8 @@ body {
     position: relative;
     overflow: hidden;
     box-shadow: 0 2px 8px rgba(37, 99, 235, 0.2);
+    opacity: 0;
+    animation: fadeInUp 0.5s ease forwards 1s;
 }
 
 .cta-button:hover {
@@ -137,6 +269,7 @@ body {
     padding: 0.75rem;
     border-radius: 0.5rem;
     background-color: transparent;
+    position: relative;
 }
 
 .contact-icon i {
@@ -154,6 +287,22 @@ body {
 .contact-icon:hover i {
     color: #4B5563;
     transform: scale(1.1);
+}
+
+.contact-icon::after {
+    content: '';
+    position: absolute;
+    bottom: -3px;
+    left: 50%;
+    width: 0;
+    height: 2px;
+    background: var(--primary-color);
+    transition: all 0.3s ease;
+    transform: translateX(-50%);
+}
+
+.contact-icon:hover::after {
+    width: 80%;
 }
 
 /* 项目展示区样式 */
@@ -1220,17 +1369,6 @@ html {
     opacity: 0.9;
 }
 
-.hero-image {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 2rem;
-    flex: 1;
-    max-width: 50%;
-    margin-left: auto;
-    transform: translateX(-1rem);
-}
-
 .hello-image {
     max-width: 500px;
     width: 100%;
@@ -1242,11 +1380,12 @@ html {
     cursor: pointer;
     transform-origin: center;
     position: relative;
+    animation: imageFloat 6s ease-in-out infinite;
 }
 
 .hello-image:hover {
-    transform: scale(1.05);
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+    transform: translateY(-5px) scale(1.02);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
 }
 
 .hello-image:active {
@@ -1706,4 +1845,245 @@ html {
     margin: 0;
     color: #666;
     font-size: 0.9rem;
+}
+
+/* 添加背景浮动形状 */
+.hero::before,
+.hero::after {
+    display: none;
+}
+
+/* 内容区域动画 */
+.hero-content {
+    animation: slideInFromLeft 1s ease-out forwards;
+    opacity: 0;
+}
+
+/* 图片区域动画 */
+.hero-image {
+    animation: slideInFromRight 1s ease-out forwards;
+    opacity: 0;
+}
+
+.hello-image {
+    animation: imageFloat 6s ease-in-out infinite;
+}
+
+/* 联系图标动画 */
+.hero-contact a {
+    opacity: 0;
+    animation: fadeInUp 0.5s ease forwards;
+}
+
+.hero-contact a:nth-child(1) { animation-delay: 0.6s; }
+.hero-contact a:nth-child(2) { animation-delay: 0.8s; }
+
+/* CTA按钮动画 */
+.cta-button {
+    opacity: 0;
+    animation: fadeInUp 0.5s ease forwards 1s;
+}
+
+/* 定义动画关键帧 */
+@keyframes slideInFromLeft {
+    0% {
+        opacity: 0;
+        transform: translateX(-50px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(3rem);
+    }
+}
+
+@keyframes slideInFromRight {
+    0% {
+        opacity: 0;
+        transform: translateX(50px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(-1rem);
+    }
+}
+
+@keyframes fadeInUp {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes float {
+    0%, 100% {
+        transform: translate(0, 0) rotate(0deg) scale(1);
+    }
+    20% {
+        transform: translate(15px, -15px) rotate(8deg) scale(1.05);
+    }
+    40% {
+        transform: translate(5px, -25px) rotate(0deg) scale(1.1);
+    }
+    60% {
+        transform: translate(-15px, -15px) rotate(-8deg) scale(1.05);
+    }
+    80% {
+        transform: translate(-5px, -5px) rotate(-4deg) scale(0.95);
+    }
+}
+
+@keyframes imageFloat {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+/* 添加鼠标悬停效果 */
+.hello-image {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.hello-image:hover {
+    transform: translateY(-5px) scale(1.02);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+}
+
+/* 优化联系图标悬停效果 */
+.contact-icon {
+    position: relative;
+}
+
+.contact-icon::after {
+    content: '';
+    position: absolute;
+    bottom: -3px;
+    left: 50%;
+    width: 0;
+    height: 2px;
+    background: var(--primary-color);
+    transition: all 0.3s ease;
+    transform: translateX(-50%);
+}
+
+.contact-icon:hover::after {
+    width: 80%;
+}
+
+/* 优化CTA按钮悬停效果 */
+.cta-button {
+    position: relative;
+    overflow: hidden;
+}
+
+.cta-button::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    transition: width 0.6s ease, height 0.6s ease;
+}
+
+.cta-button:hover::after {
+    width: 300px;
+    height: 300px;
+}
+
+/* 修改动画关键帧 */
+@keyframes morphing {
+    0% {
+        border-radius: 42% 58% 70% 30% / 45% 45% 55% 55%;
+        transform: rotate(0deg);
+    }
+    25% {
+        border-radius: 58% 42% 75% 25% / 76% 46% 54% 24%;
+    }
+    50% {
+        border-radius: 50% 50% 33% 67% / 55% 27% 73% 45%;
+        transform: rotate(-10deg);
+    }
+    75% {
+        border-radius: 33% 67% 58% 42% / 63% 68% 32% 37%;
+    }
+    100% {
+        border-radius: 42% 58% 70% 30% / 45% 45% 55% 55%;
+        transform: rotate(0deg);
+    }
+}
+
+/* 预览遮罩层样式优化 */
+.preview-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.9);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    cursor: pointer;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.preview-overlay.active {
+    opacity: 1;
+}
+
+.preview-content {
+    max-width: 90%;
+    max-height: 90vh;
+    object-fit: contain;
+    cursor: default;
+    transform: scale(0.95);
+    transition: transform 0.3s ease;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+.preview-overlay.active .preview-content {
+    transform: scale(1);
+}
+
+/* 视频预览特殊处理 */
+video.preview-content {
+    background: #000;
+    border-radius: 4px;
+}
+
+/* 加载状态指示器 */
+.preview-loader {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 40px;
+    height: 40px;
+    border: 3px solid rgba(255, 255, 255, 0.2);
+    border-top-color: #fff;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    display: none;
+}
+
+.preview-overlay.loading .preview-loader {
+    display: block;
+}
+
+@keyframes spin {
+    to {
+        transform: translate(-50%, -50%) rotate(360deg);
+    }
 }
