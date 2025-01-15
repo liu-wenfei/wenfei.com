@@ -10,7 +10,7 @@
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
     <script type="text/javascript">
         (function() {
-            emailjs.init("YOUR_PUBLIC_KEY"); // 替换为你的EmailJS public key
+            emailjs.init("j9bn3mlI3DsNSUVsn");
         })();
     </script>
 </head>
@@ -316,6 +316,43 @@
                         <p>• Research report on traditional construction techniques</p>
                     </div>
                 </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 联系表单区域 -->
+    <section class="contact-section" id="contact">
+        <div class="contact-container">
+            <div class="contact-text">
+                <h2>Get in touch with me</h2>
+                <p>Feel free to reach out if you have any questions or just want to connect.</p>
+                <div class="contact-social">
+                    <a href="https://github.com/liu-wenfei" class="contact-link" target="_blank">
+                        <i class="fab fa-github"></i>
+                        <span>github.com/liu-wenfei</span>
+                    </a>
+                    <a href="mailto:liuwenfei0406@163.com" class="contact-link">
+                        <i class="fas fa-envelope"></i>
+                        <span>liuwenfei0406@163.com</span>
+                    </a>
+                </div>
+            </div>
+            <div class="contact-form">
+                <form id="contactForm" onsubmit="return handleSubmit(event)">
+                    <div class="form-group">
+                        <label>What is your name?</label>
+                        <input type="text" name="name" placeholder="e.g. Georgia O'Keeffe" required>
+                    </div>
+                    <div class="form-group">
+                        <label>What is your email?</label>
+                        <input type="email" name="email" placeholder="e.g. email@gmail.com" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Leave a message</label>
+                        <textarea name="message" placeholder="enter text" required></textarea>
+                    </div>
+                    <button type="submit" class="submit-btn">Submit</button>
+                </form>
             </div>
         </div>
     </section>
@@ -1062,7 +1099,7 @@
             // 添加ESC键关闭功能
             const escHandler = (e) => {
                 if (e.key === 'Escape') {
-                    document.body.removeChild(previewContainer);
+                    document.body.removeChild(this);
                     document.removeEventListener('keydown', escHandler);
                 }
             };

@@ -398,3 +398,60 @@ window.showArchProjectImages = function(index) {
     showProjectImages(index, archProjectImages);
 };
 
+// 添加表单处理函数
+async function handleSubmit(event) {
+    event.preventDefault();
+    
+    const form = event.target;
+    const submitBtn = form.querySelector('.submit-btn');
+    const originalText = submitBtn.textContent;
+    
+    submitBtn.disabled = true;
+    submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
+    
+    // 简化表单数据，只包含必要字段
+    const formData = {
+        from_name: form.name.value,
+        reply_to: form.email.value,
+        message: form.message.value
+    };
+
+    try {
+        console.log('Sending email with data:', formData);
+        
+        const response = await emailjs.send(
+            'service_8jqx9wq',
+            'template_y8r3k9w',
+            formData,
+            'j9bn3mlI3DsNSUVsn'
+        );
+        
+        console.log('Email sent successfully:', response);
+        
+        submitBtn.innerHTML = '<i class="fas fa-check"></i> Sent!';
+        form.reset();
+        
+        setTimeout(() => {
+            submitBtn.disabled = false;
+            submitBtn.textContent = originalText;
+        }, 3000);
+
+    } catch (error) {
+        console.error('Email send error details:', error);
+        
+        let errorMessage = 'Failed to send';
+        if (error.text) {
+            errorMessage += `: ${error.text}`;
+        }
+        
+        submitBtn.innerHTML = `<i class="fas fa-exclamation-circle"></i> ${errorMessage}`;
+        
+        setTimeout(() => {
+            submitBtn.disabled = false;
+            submitBtn.textContent = originalText;
+        }, 3000);
+    }
+    
+    return false;
+}
+
