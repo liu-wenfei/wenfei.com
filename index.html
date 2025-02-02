@@ -112,7 +112,12 @@
                     <div id="demo-container" class="demo-container hidden">
                         <div class="demo-frame">
                             <div class="demo-header">
-                                <span>AI Assistant</span>
+                                <div class="header-dots">
+                                    <span class="dot red"></span>
+                                    <span class="dot yellow"></span>
+                                    <span class="dot green"></span>
+                                </div>
+                                <span class="header-title">AI Assistant</span>
                                 <button class="close-button">
                                     <i class="fas fa-times"></i>
                                 </button>
@@ -122,7 +127,9 @@
                                     <div class="chat-messages" id="chatMessages">
                                         <div class="message bot">
                                             <div class="message-content">
-                                                Hello! I'm your AI assistant. How can I help you today?
+                                                <div class="message-bubble">
+                                                    Hello! I'm your AI assistant. How can I help you today?
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -288,6 +295,38 @@
         </div>
     </section>
 
+    <!-- 工作经历区 Work Experience -->
+    <section class="experience-section" id="experience">
+        <h2 class="section-title">Work Experience</h2>
+        <div class="timeline-container">
+            <div class="timeline-item">
+                <div class="timeline-date">2024.07 - 2025.01</div>
+                <div class="timeline-content">
+                    <h3>Hainan Laiting Intelligent Technology Co., Ltd , guangzhou</h3>
+                    <p class="timeline-role">Software Developer</p>
+                    <div class="timeline-details">
+                        <p>• Developed and maintained web applications using modern frameworks</p>
+                        <p>• Implemented software solutions for business requirements</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-date">2020.03 - 2020.09</div>
+                <div class="timeline-content">
+                    <h3>atelier TUO & RAC Studio, Shanghai</h3>
+                    <p class="timeline-role">Design Assistant & Web Developer</p>
+                    <div class="timeline-details">
+                        <p>• Translucent installation art design and conceptual development</p>
+                        <p>• Conceptual design for Baichuan Bio-office Building</p>
+                        <p>• Interior renovation of historical apartment in Shanghai</p>
+                        <p>• Developed and maintained the studio's website backend infrastructure</p>
+                        <p>• Built data processing systems for design project management</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
     <!-- 联系表单区域 -->
     <section class="contact-section" id="contact">
@@ -518,20 +557,46 @@
         document.addEventListener('keydown', escKeyHandler);
     }
 
+    // 添加关闭对话框的函数
+    function closeDemo() {
+        const demoContainer = document.getElementById('demo-container');
+        if (demoContainer) {
+            demoContainer.classList.add('hidden');
+            // 清空聊天记录，只保留初始消息（不包含头像）
+            const chatMessages = document.getElementById('chatMessages');
+            chatMessages.innerHTML = `
+                <div class="message bot">
+                    <div class="message-content">
+                        <div class="message-bubble">
+                            Hello! I'm your AI assistant. How can I help you today?
+                        </div>
+                    </div>
+                </div>
+            `;
+            // 清空输入框
+            const userInput = document.getElementById('userInput');
+            if (userInput) {
+                userInput.value = '';
+            }
+        }
+    }
+
     // 等待 DOM 加载完成
     document.addEventListener('DOMContentLoaded', function() {
         // 获取所有需要的元素
         const demoButton = document.querySelector('.demo-button');
-        const userInput = document.getElementById('userInput');
+        const redDot = document.querySelector('.dot.red');
         const demoContainer = document.getElementById('demo-container');
+        const userInput = document.getElementById('userInput');
         const closeButton = document.querySelector('.close-button');
         const sendButton = document.getElementById('sendButton');
         
         // 验证所有必需的元素
         const requiredElements = {
             demoButton,
-            userInput,
+            redDot,
             demoContainer,
+            userInput,
             closeButton,
             sendButton
         };
@@ -586,6 +651,22 @@
         const demoFrame = document.querySelector('.demo-frame');
         demoFrame.addEventListener('click', function(e) {
             e.stopPropagation();
+        });
+
+        // 添加红色按钮点击事件
+        if (redDot) {
+            redDot.addEventListener('click', function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                closeDemo();
+            });
+        }
+
+        // 添加ESC键关闭功能
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && demoContainer && !demoContainer.classList.contains('hidden')) {
+                closeDemo();
+            }
         });
 
         console.log('All event listeners attached successfully');
@@ -1121,29 +1202,282 @@
     </script>
 
     <style>
-    .preview-overlay {
+    /* 对话框基础样式 */
+    .demo-section {
+        position: relative;
+        margin-top: 20px;
+    }
+
+    .demo-container {
         position: fixed;
         top: 0;
         left: 0;
         width: 100%;
         height: 100%;
-        background: rgba(0, 0, 0, 0.9);
+        background: rgba(0, 0, 0, 0.5);
         display: flex;
         justify-content: center;
         align-items: center;
         z-index: 1000;
+        opacity: 1;
+        transition: opacity 0.3s ease, transform 0.3s ease;
+    }
+
+    .demo-container.hidden {
+        opacity: 0;
+        pointer-events: none;
+        transform: scale(0.95);
+    }
+
+    .demo-frame {
+        background: white;
+        width: 90%;
+        max-width: 500px;
+        height: 600px;
+        border-radius: 10px;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        animation: slideUp 0.3s ease;
+        border: 1px solid #e1e1e3;
+    }
+
+    /* 聊天容器样式 */
+    .chat-container {
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .chat-messages {
+        flex-grow: 1;
+        overflow-y: auto;
+        padding: 16px;
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    /* 消息样式 */
+    .message {
+        display: flex;
+        align-items: flex-start;
+        max-width: 85%;
+        margin-bottom: 8px;
+    }
+
+    .message.bot {
+        align-self: flex-start;
+    }
+
+    .message.user {
+        align-self: flex-end;
+        flex-direction: row-reverse;
+    }
+
+    .message-content {
+        display: flex;
+        flex-direction: column;
+        max-width: 100%;
+    }
+
+    .message-bubble {
+        background: transparent;
+        padding: 8px 12px;
+        border-radius: 12px;
+        font-size: 14px;
+        line-height: 1.4;
+        word-wrap: break-word;
+    }
+
+    .message.user .message-bubble {
+        background: #4A90E2;
+        color: white;
+    }
+
+    /* 输入区域样式 */
+    .chat-input {
+        padding: 12px 16px;
+        background: white;
+        border-top: 1px solid #eee;
+        display: flex;
+        gap: 8px;
+    }
+
+    .chat-input input {
+        flex-grow: 1;
+        padding: 8px 12px;
+        border: 1px solid #ddd;
+        border-radius: 6px;
+        outline: none;
+        font-size: 14px;
+        transition: border-color 0.2s ease;
+    }
+
+    .chat-input input:focus {
+        border-color: #4A90E2;
+    }
+
+    .send-button {
+        background: #4A90E2;
+        color: white;
+        border: none;
+        width: 40px;
+        height: 40px;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: all 0.2s ease;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .send-button:hover {
+        background: #357ABD;
+        transform: translateY(-2px);
+    }
+
+    /* 打字指示器样式 */
+    .typing-indicator {
+        display: flex;
+        gap: 3px;
+        padding: 8px 12px;
+        background: #f0f2f5;
+        border-radius: 12px;
+        width: fit-content;
+        margin: 4px 0;
+    }
+
+    .typing-indicator span {
+        width: 6px;
+        height: 6px;
+        background: #90A4AE;
+        border-radius: 50%;
+        animation: typing 1s infinite ease-in-out;
+    }
+
+    @keyframes typing {
+        0%, 100% { transform: translateY(0); }
+        50% { transform: translateY(-4px); }
+    }
+
+    /* 滚动条样式 */
+    .chat-messages::-webkit-scrollbar {
+        width: 6px;
+    }
+
+    .chat-messages::-webkit-scrollbar-track {
+        background: #f1f1f1;
+    }
+
+    .chat-messages::-webkit-scrollbar-thumb {
+        background: #888;
+        border-radius: 3px;
+    }
+
+    .chat-messages::-webkit-scrollbar-thumb:hover {
+        background: #555;
+    }
+
+    /* MAC风格窗口标题栏样式 */
+    .demo-header {
+        background: #f5f5f7;
+        padding: 12px 16px;
+        display: flex;
+        align-items: center;
+        border-bottom: 1px solid #e1e1e3;
+        -webkit-app-region: drag;
+        height: 38px;
+        position: relative;
+    }
+
+    .header-dots {
+        display: flex;
+        gap: 8px;
+        margin-right: 15px;
+        -webkit-app-region: no-drag;
+        z-index: 2;
+    }
+
+    .dot {
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        position: relative;
+        transition: all 0.2s ease;
         cursor: pointer;
     }
 
-    .preview-content {
-        max-width: 90%;
-        max-height: 90vh;
-        object-fit: contain;
-        cursor: default; /* 确保鼠标悬停在内容上时显示默认指针 */
+    .dot:hover::before {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 8px;
+        height: 8px;
+        background-size: 8px;
+        opacity: 0.5;
     }
 
-    video.preview-content {
-        cursor: default;
+    .dot.red {
+        background: #ff5f57;
+        border: 1px solid #e0443e;
+    }
+
+    .dot.red:hover {
+        background: #ff4343;
+        transform: scale(1.1);
+    }
+
+    .dot.red:active {
+        transform: scale(0.95);
+    }
+
+    .dot.yellow { 
+        background: #febc2e;
+        border: 1px solid #dea123;
+    }
+
+    .dot.yellow:hover::before {
+        background-image: url("data:image/svg+xml,%3Csvg width='8' height='8' viewBox='0 0 8 8' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 4H7' stroke='%23925e12' stroke-width='1.2'/%3E%3C/svg%3E");
+    }
+
+    .dot.green { 
+        background: #28c840;
+        border: 1px solid #1aab29;
+    }
+
+    .dot.green:hover::before {
+        background-image: url("data:image/svg+xml,%3Csvg width='8' height='8' viewBox='0 0 8 8' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 4L3 6L7 2' stroke='%230b520f' stroke-width='1.2'/%3E%3C/svg%3E");
+    }
+
+    .header-title {
+        position: absolute;
+        width: 100%;
+        text-align: center;
+        left: 0;
+        color: #4a4a4a;
+        font-size: 13px;
+        font-weight: 500;
+        -webkit-app-region: drag;
+        pointer-events: none;
+    }
+
+    .close-button {
+        display: none; /* 隐藏原来的关闭按钮，使用红色圆点代替 */
+    }
+
+    @keyframes slideUp {
+        from {
+            transform: translateY(20px);
+            opacity: 0;
+        }
+        to {
+            transform: translateY(0);
+            opacity: 1;
+        }
     }
     </style>
 </body>
